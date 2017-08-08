@@ -9,7 +9,10 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let course of courses">
-      <p>{{course.name}}</p>
+      <p class="course-item course-item__name">{{course.name}}</p>
+      <p class="course-item">Teacher: {{course.teacher}}</p>
+      <p class="course-item">Hours: {{course.hours}}</p>
+      <ion-badge item-end [color]="badgeColor(course.level)">{{course.level}}</ion-badge>
     </ion-item>
   </ion-list>
 </ion-content>

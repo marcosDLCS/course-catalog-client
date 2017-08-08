@@ -5,5 +5,36 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="newForm" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Active</ion-label>
+      <ion-checkbox color="dark" checked="true" formControlName="active"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Teacher</ion-label>
+      <ion-select formControlName="teacher">
+        <ion-option *ngFor="let teacher of teachers" value="{{teacher.id}}">
+          {{teacher.name}} {{teacher.surname}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Level</ion-label>
+      <ion-select formControlName="level">
+        <ion-option value="Basico">Basico</ion-option>
+        <ion-option value="Intermedio">Intermedio</ion-option>
+        <ion-option value="Avanzado">Avanzado</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hours</ion-label>
+      <ion-input type="number" formControlName="hours"></ion-input>
+    </ion-item>
 
+    <button ion-button full type="submit" [disabled]="!newForm.valid">Add</button>
+  </form>
 </ion-content>

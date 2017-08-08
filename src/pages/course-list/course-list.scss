@@ -1,3 +1,16 @@
-page-about {
+// page-course-list {}
 
+.item{
+  padding-left: 0;
+}
+
+.course-item{}
+.course-item__name{
+  font-weight:bold;
+  font-size: 16px!important;
+  margin-bottom: 10px!important;
+}
+
+.badge{
+  min-width: 90px;
 }
