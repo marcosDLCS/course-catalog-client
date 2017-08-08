@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {Http, RequestOptions} from '@angular/http';
+import { ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -13,7 +14,8 @@ export class NewCourse {
   private newForm : FormGroup;
   teachers:any;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private http : Http ) {
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder,
+              public http : Http, public toastCtrl:ToastController ) {
     this.newForm = this.formBuilder.group({
       active: ['true', Validators.required],
       teacher: ['', Validators.required],
@@ -21,10 +23,10 @@ export class NewCourse {
       level: ['', Validators.required],
       hours: ['', Validators.required]
     });
+
     this.http.get("http://localhost:8081/course-catalog/api/teachers")
       .map(res => res.json()).subscribe(data => {
       this.teachers = data;
-      console.log("This is my response - [teachers] : " + JSON.stringify(this.teachers));
     });
   }
 
@@ -35,6 +37,8 @@ export class NewCourse {
     this.http.post("http://localhost:8081/course-catalog/api/courses", this.newForm.value, options)
       .subscribe(
         data => {
+          this.newForm.reset();
+          this.showToast();
           console.log("RESPONSE: " + data);
         },
         err => {
@@ -43,4 +47,11 @@ export class NewCourse {
       );
   }
 
+  showToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Course was added successfully',
+      duration: 4000
+    });
+    toast.present();
+  }
 }

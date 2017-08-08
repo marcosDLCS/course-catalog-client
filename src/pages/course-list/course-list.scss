@@ -14,3 +14,12 @@
 .badge{
   min-width: 90px;
 }
+
+.list-button-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.list-button{
+  flex: 1;
+}

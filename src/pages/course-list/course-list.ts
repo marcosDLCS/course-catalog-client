@@ -33,6 +33,10 @@ export class CourseList {
     });
   }
 
+  reloadList(){
+    this.loadList(this.URL);
+  }
+
   orderList(order: String) {
     this.loadList(this.URL + "?order=" + order);
   }
