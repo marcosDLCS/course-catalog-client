@@ -8,25 +8,32 @@ import 'rxjs/add/operator/map';
   templateUrl: 'course-list.html'
 })
 export class CourseList {
-
+  URL:string = "http://localhost:8081/course-catalog/api/courses";
   courses: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
-    this.http.get("http://localhost:8081/course-catalog/api/courses")
-      .map(res => res.json()).subscribe(data => {
-      this.courses = data;
-      console.log("This is my response: " + JSON.stringify(this.courses));
-    });
+    this.loadList(this.URL);
   }
 
-  badgeColor(level: String) {
+  badgeColor(level: string) {
     let color: String = "";
-    if (level.toLowerCase() == 'basico'){
+    if (level.toLowerCase() == 'basico') {
       color = 'secondary';
     }
-    if (level.toLowerCase() == 'avanzado'){
+    if (level.toLowerCase() == 'avanzado') {
       color = 'danger'
     }
     return color;
+  }
+
+  loadList(url: string) {
+    this.http.get(url)
+      .map(res => res.json()).subscribe(data => {
+      this.courses = data;
+    });
+  }
+
+  orderList(order: String) {
+    this.loadList(this.URL + "?order=" + order);
   }
 }
