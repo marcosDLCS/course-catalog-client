@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="newForm" (ngSubmit)="logForm()">
+  <form [formGroup]="newForm" (ngSubmit)="postForm()">
     <ion-item>
       <ion-label>Active</ion-label>
       <ion-checkbox color="dark" checked="true" formControlName="active"></ion-checkbox>
@@ -35,6 +35,6 @@
       <ion-input type="number" formControlName="hours"></ion-input>
     </ion-item>
 
-    <button ion-button full type="submit" [disabled]="!newForm.valid">Add</button>
+    <button ion-button full type="submit" [disabled]="!newForm.valid" >Add</button>
   </form>
 </ion-content>

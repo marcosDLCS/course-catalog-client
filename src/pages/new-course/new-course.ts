@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-import {Http} from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -28,8 +28,19 @@ export class NewCourse {
     });
   }
 
-  logForm(){
+  postForm(){
     console.log(this.newForm.value)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions(headers);
+    this.http.post("http://localhost:8081/course-catalog/api/courses", this.newForm.value, options)
+      .subscribe(
+        data => {
+          console.log("RESPONSE: " + data);
+        },
+        err => {
+          console.log("ERROR: ", err);
+        }
+      );
   }
 
 }
