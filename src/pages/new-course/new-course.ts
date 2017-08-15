@@ -16,6 +16,8 @@ export class NewCourse {
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder,
               public http : Http, public toastCtrl:ToastController ) {
+
+
     this.newForm = this.formBuilder.group({
       active: ['true', Validators.required],
       teacher: ['', Validators.required],
@@ -23,6 +25,7 @@ export class NewCourse {
       level: ['', Validators.required],
       hours: ['', Validators.required]
     });
+
 
     this.http.get("http://localhost:8081/course-catalog/api/teachers")
       .map(res => res.json()).subscribe(data => {
@@ -50,7 +53,7 @@ export class NewCourse {
   showToast() {
     let toast = this.toastCtrl.create({
       message: 'Course was added successfully',
-      duration: 4000
+      duration: 2500
     });
     toast.present();
   }
