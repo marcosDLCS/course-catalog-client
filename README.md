@@ -15,6 +15,11 @@ https://github.com/marcosDLCS/course-catalog
 * Checkout del proyecto
 * Ionic serve
 
+## Ramas
+
+* Development (default)
+* Master (protected)
+
 
 
 
